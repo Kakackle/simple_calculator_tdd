@@ -1,40 +1,52 @@
 # -*- coding: utf-8 -*-
 
 import operator
+import math
+from functools import reduce
 from functools import reduce
 
 
 class SimpleCalculator:
     def add(self, *args):
         return sum(args)
-
+    
     def sub(self, a, b):
         return a - b
-
+    
     def mul(self, *args):
-        if not all(args):
-            raise ValueError
-        return reduce(operator.mul, args)
+        def mul2(a,b):
+            return a*b
+        return reduce(mul2, args)
+    # def add(self, *args):
+    #     return sum(args)
 
-    def div(self, a, b):
-        try:
-            return a / b
-        except ZeroDivisionError:
-            return float("inf")
+    # def sub(self, a, b):
+    #     return a - b
 
-    def avg(self, it, lt=None, ut=None):
-        count = 0
-        total = 0
+    # def mul(self, *args):
+    #     if not all(args):
+    #         raise ValueError
+    #     return reduce(operator.mul, args)
 
-        for number in it:
-            if lt is not None and number < lt:
-                continue
-            if ut is not None and number > ut:
-                continue
-            count += 1
-            total += number
+    # def div(self, a, b):
+    #     try:
+    #         return a / b
+    #     except ZeroDivisionError:
+    #         return float("inf")
 
-        if count == 0:
-            return 0
+    # def avg(self, it, lt=None, ut=None):
+    #     count = 0
+    #     total = 0
 
-        return total / count
+    #     for number in it:
+    #         if lt is not None and number < lt:
+    #             continue
+    #         if ut is not None and number > ut:
+    #             continue
+    #         count += 1
+    #         total += number
+
+    #     if count == 0:
+    #         return 0
+
+    #     return total / count
