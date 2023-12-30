@@ -14,19 +14,28 @@ class SimpleCalculator:
         return a - b
     
     def mul(self, *args):
+        #check for 0s in args
+        if not all(args):
+            raise ValueError
+
         def mul2(a,b):
             return a*b
         return reduce(mul2, args)
-    # def add(self, *args):
-    #     return sum(args)
 
-    # def sub(self, a, b):
-    #     return a - b
+    def div(self, a, b):
+        if not b:
+            return float('inf')
+        return a / b
+    
+    def average(self, *args, ut=float('inf'), lt=-1*float('inf')):
+        args = [arg for arg in args if arg < ut]
+        args = [arg for arg in args if arg > lt]
 
-    # def mul(self, *args):
-    #     if not all(args):
-    #         raise ValueError
-    #     return reduce(operator.mul, args)
+        if not args:
+            return 0
+
+        arg_sum = sum(args)
+        return float(arg_sum / len(args))
 
     # def div(self, a, b):
     #     try:
